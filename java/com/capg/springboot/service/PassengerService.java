@@ -9,9 +9,8 @@ import com.capg.springboot.exceptions.PassengerNotFoundException;
 
 public interface PassengerService {
 
-	public Passenger addPassenger(Passenger add);
-	public Passenger removePassenger(Passenger add);
-	public Passenger updatePassenger(Passenger add);
-	Passenger modifyPassenger(Passenger passenger, int passengerId);
+	Passenger addPassenger(Passenger add);
+	Passenger removePassenger(Passenger add);
+	Passenger updatePassenger(Passenger add);
 
 }

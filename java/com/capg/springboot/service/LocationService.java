@@ -5,10 +5,9 @@ import com.capg.springboot.entity.Location;
 
 public interface LocationService {
 
-	Location addCustomer(Location customer);
+	Location addLocation(Location add);
 
-	Location modifyCustomer(Location customer);
-
-	Location removeCustomer(Location customer);
-
+	Location updateLocation(Location add);
+	
+	Location removeLocation(Location add);
 }

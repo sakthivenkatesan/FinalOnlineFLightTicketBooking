@@ -1,25 +1,31 @@
 package com.capg.springboot.entity;
 import javax.persistence.*;
 
-import org.springframework.data.annotation.Id;
-
 @Entity
 @Table(name="fleet")
 public class Fleet {
-	@Id
-	@Column(name = "id", unique = true, nullable = false)
-			private int fleetId;
-	@Column(name = "code")
+	
+			@Id
+			@GeneratedValue
+			@Column(name = "id", unique = true, nullable = false)
+			private int fleet_id;
+			@Column(name = "code")
 			private String code;
-	@Column(name = "model")
+			@Column(name = "model")
 			private String model;
-	@Column(name = "economy")
+			@Column(name = "economy")
 			private int totalEconomySeats;
-	@Column(name = "premium")
+			@Column(name = "premium")
 			private int totalPremiumSeats;
-	@Column(name = "business")
+			@Column(name = "business")
 			private int totalBusinessSeats;
+		
+			@OneToOne(mappedBy = "fleet",fetch = FetchType.LAZY , cascade = CascadeType.ALL)
+			private Flight flight;
 			
+			/*@OneToOne
+		    @JoinColumn(name="flight_id")
+			private Flight flight;*/
 			
 			public Fleet() {
 				super();
@@ -28,7 +34,7 @@ public class Fleet {
 			public Fleet(int fleetId, String code, String model, int totalEconomySeats, int totalPremiumSeats,
 					int totalBusinessSeats) {
 				super();
-				this.fleetId = fleetId;
+				this.fleet_id = fleetId;
 				this.code = code;
 				this.model = model;
 				this.totalEconomySeats = totalEconomySeats;
@@ -36,10 +42,10 @@ public class Fleet {
 				this.totalBusinessSeats = totalBusinessSeats;
 			}
 			public int getFleetId() {
-				return fleetId;
+				return fleet_id;
 			}
 			public void setFleetId(int fleetId) {
-				this.fleetId = fleetId;
+				this.fleet_id = fleetId;
 			}
 			public String getCode() {
 				return code;
@@ -71,7 +77,5 @@ public class Fleet {
 			public void setTotalBusinessSeats(int totalBusinessSeats) {
 				this.totalBusinessSeats = totalBusinessSeats;
 			}
-			
-			
 			
 }

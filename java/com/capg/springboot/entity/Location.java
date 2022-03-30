@@ -6,9 +6,9 @@ import javax.persistence.*;
 @Table(name="location")
 public class Location {
 	@Id
+	@GeneratedValue
 	@Column(name = "id", unique = true, nullable = false)
-
-	private int locationId;
+	private int location_id;
 	@Column(name = "name")
 	private String name;
 	@Column(name = "code")
@@ -18,7 +18,12 @@ public class Location {
 	@Column(name = "airport")
 	private String airportName;
 	
+	@OneToOne(mappedBy = "location",fetch = FetchType.LAZY , cascade = CascadeType.ALL)
+    private Flight flight;
 	
+	/*@OneToOne
+    @JoinColumn(name="flight_id")
+	private Flight flight;*/
 	
 	public Location() {
 		super();
@@ -26,17 +31,17 @@ public class Location {
 	}
 	public Location(int locationId, String name, String code, String country, String airportName) {
 		super();
-		this.locationId = locationId;
+		this.location_id = locationId;
 		this.name = name;
 		this.code = code;
 		this.country = country;
 		this.airportName = airportName;
 	}
 	public int getLocationId() {
-		return locationId;
+		return location_id;
 	}
 	public void setLocationId(int locationId) {
-		this.locationId = locationId;
+		this.location_id = locationId;
 	}
 	public String getName() {
 		return name;
@@ -62,6 +67,12 @@ public class Location {
 	public void setAirportName(String airportName) {
 		this.airportName = airportName;
 	}
+	@Override
+	public String toString() {
+		return "Location [locationId=" + location_id + ", name=" + name + ", code=" + code + ", country=" + country
+				+ ", airportName=" + airportName + "]";
+	}
+	
 	
 	
 

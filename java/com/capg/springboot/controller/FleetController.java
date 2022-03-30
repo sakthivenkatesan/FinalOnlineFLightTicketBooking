@@ -12,36 +12,34 @@ import com.capg.springboot.entity.Fleet;
 import com.capg.springboot.service.FleetService;
 
 
-
+@SuppressWarnings("unused")
 @RequestMapping("/FleetController")
 @RestController
-
-
 public class FleetController {
 	@Autowired
 	private FleetService Fleetservice;
 	
 	//Add Fleet method
 	@PostMapping("/addFleet")
-	public ResponseEntity<Fleet> addCustomer(@RequestBody Fleet customer)
+	public ResponseEntity<Fleet> addCustomer(@RequestBody Fleet add)
 	{
-		Fleetservice.addFleet(customer);
-		return new ResponseEntity(customer,HttpStatus.OK);
+		Fleetservice.addFleet(add);
+		return new ResponseEntity(add,HttpStatus.OK);
 	}
 	
 	//Modify Fleet method
-	@PostMapping("/modifyFleet")
-	public ResponseEntity<Fleet> modifyCustomer(@RequestBody Fleet customer)
+	@PostMapping("/UpdateFleet")
+	public ResponseEntity<Fleet> updateCustomer(@RequestBody Fleet add)
 	{
-		Fleetservice.modifyFleet(customer);
-		return new ResponseEntity(customer,HttpStatus.OK);
+		Fleetservice.updateFleet(add);
+		return new ResponseEntity(add,HttpStatus.OK);
 	}
 	
 	//Deleting a Fleet
 	@DeleteMapping("/deleteFleet") 
-	public ResponseEntity<Fleet> removeFleet(@RequestBody Fleet fleet)
+	public ResponseEntity<Fleet> removeFleet(@RequestBody Fleet add)
 	{
-       Fleetservice.removeFleet(fleet);
-       return new ResponseEntity(fleet,HttpStatus.OK); 
+       Fleetservice.removeFleet(add);
+       return new ResponseEntity(add,HttpStatus.OK); 
     }
 }

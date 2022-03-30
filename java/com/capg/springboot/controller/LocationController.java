@@ -14,34 +14,31 @@ import com.capg.springboot.service.LocationService;
 
 @RequestMapping("/LocationController")
 @RestController
-
-
 public class LocationController {
 	@Autowired
 	private LocationService locationservice;
 	
-	//Add user method
-	@PostMapping("/addLocation")
-	public ResponseEntity<Location> addCustomer(@RequestBody Location customer)
-	{
-		locationservice.addCustomer(customer);
-		return new ResponseEntity(customer,HttpStatus.OK);
-	}
-	
-	//Modify user method
-	@PostMapping("/modifyLocation")
-	public ResponseEntity<Location> modifyCustomer(@RequestBody Location customer)
-	{
-		Location custImpl=locationservice.modifyCustomer(customer);
-		return new ResponseEntity(custImpl,HttpStatus.OK);
-	}
-	
-	//Deleting an user
-	@DeleteMapping("/deleteLocation") 
-	public ResponseEntity<Location> removeCustomer(@RequestBody Location customer)
-	{
-       locationservice.removeCustomer(customer);
-       return new ResponseEntity(customer,HttpStatus.OK); 
-    }
-	
+	//Add Location method
+		@PostMapping("/addLocation")
+		public ResponseEntity<Location> add(@RequestBody Location add)
+		{
+			Location locImpl=locationservice.addLocation(add);
+			return new ResponseEntity(locImpl,HttpStatus.OK);
+		}
+		
+		//Modify Location method
+		@PostMapping("/modifyLocation")
+		public ResponseEntity<Location> modifyLocation(@RequestBody Location add)
+		{
+			Location locImpl=locationservice.updateLocation(add);
+			return new ResponseEntity(locImpl,HttpStatus.OK);
+		}
+		
+		//Deleting location method
+		@DeleteMapping("/deleteLocation") 
+		public ResponseEntity<Location> removeLocation(@RequestBody Location add)
+		{
+	       Location locImpl=locationservice.removeLocation(add);
+	       return new ResponseEntity(locImpl,HttpStatus.OK); 
+	    }
 }

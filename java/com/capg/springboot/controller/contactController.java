@@ -13,33 +13,33 @@ import com.capg.springboot.entity.Contact;
 import com.capg.springboot.entity.User;
 import com.capg.springboot.service.ContactService;
 
+@RequestMapping("/contactController")
+@RestController
 public class contactController {
 	@Autowired
 	private ContactService contactservice;
 	
 	//Add contact method
-	@PostMapping("/addContact")
-	public ResponseEntity<Contact> addContact(@RequestBody Contact a)
-	{
-		contactservice.addContact(a);
-		return new ResponseEntity(a ,HttpStatus.OK);
-	}
-	
-	//Modify contact method
-		@PostMapping("/modifyContact")
-		public ResponseEntity<Contact> modifyContact(@RequestBody Contact a)
+		@PostMapping("/addContact")
+		public ResponseEntity<Contact> addContact(@RequestBody Contact customer)
 		{
-			contactservice.modifycontact(a);
-			return new ResponseEntity(a ,HttpStatus.OK);
+			Contact contImpl=contactservice.addContact(customer);
+			return new ResponseEntity(contImpl,HttpStatus.OK);
 		}
-		
-		//Deleting a contact
-		@DeleteMapping("/deleteContact") 
-		public ResponseEntity<Contact> removeContact(@RequestBody Contact a)
-		{
-	       contactservice.removeCustomer(a);
-	       return new ResponseEntity(a ,HttpStatus.OK); 
-	    }
-	
+		//Modify contact method
+			@PostMapping("/modifyContact")
+			public ResponseEntity<Contact> updateContact(@RequestBody Contact customer)
+			{
+				Contact contImpl=contactservice.updateContact(customer);
+				return new ResponseEntity(contImpl,HttpStatus.OK);
+			}
+			
+			//Deleting a contact
+			@DeleteMapping("/removeContact") 
+			public ResponseEntity<Contact> removeContact(@RequestBody Contact add)
+			{
+		       contactservice.removeContact(add);
+		       return new ResponseEntity(add,HttpStatus.OK); 
+		    }
 
 }

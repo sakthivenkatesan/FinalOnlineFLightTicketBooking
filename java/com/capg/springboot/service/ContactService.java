@@ -5,9 +5,9 @@ import com.capg.springboot.entity.Contact;
 
 public interface ContactService {
 
-	Contact addContact(Contact contact);
+	Contact addContact(Contact customer);
 
-	Contact modifycontact(Contact contact);
+	Contact updateContact(Contact customer);
 
-	Contact removeCustomer(Contact contact);
+	Contact removeContact(Contact customer);
 }

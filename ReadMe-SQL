@@ -1,0 +1,14 @@
+Booking:
+	insert into booking(id, number, date, tdate, cost) values(1,8466845,123,50,3800.00);
+Contact:
+	insert into contact (id, type, address, zipcode, city,state, country, mobile) values(1, 'type', 'AAA', 639104, 'Karur', 'Tamilnadu', 'India', 9789532231);
+Fleet:
+	insert into fleet(id, code, model, economy, premium, business) values(1, 'AAA', 'model', 600, 75, 25);
+Flight:
+	insert into flight(id, departure, arrival, departuret, arrivalt) values(1, 'departure', 'arrival', 20220322, 20220326);
+Location:
+	insert into location(id, name, code, country, airport) values(1, 'name', 'code', 'country', 'airport');
+Passenger:
+	insert into passenger(id, fname, lname, age, gender, passportno, mealpref) values(1, 'fname', 'lname', 23, 'female', '864581681', 'veg');
+User:
+	insert into user(id, name, password, firstname, lastname, email) values(1, 'name', 'password', 'fname', 'lname', 'email');

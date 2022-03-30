@@ -3,16 +3,15 @@ package com.capg.springboot.entity;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name="user")
 
 public class User 
 {
 	@Id
+	@GeneratedValue
 	@Column(name = "id", unique = true, nullable = false)
-	private int UserId;
+	private int user_id;
 	@Column(name = "name")
 	private String userName;
 	@Column(name = "password")
@@ -24,26 +23,24 @@ public class User
 	@Column(name = "email")
 	private String email;
 	
-	@JsonIgnore
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne
     @JoinColumn(name="contact_id")
 	private Contact contact;
 	
-	@JsonIgnore
-	@OneToOne(fetch = FetchType.LAZY)
+	
+	@OneToOne
     @JoinColumn(name="passenger_id")
 	private Passenger passenger;
 	
-	@JsonIgnore
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne
     @JoinColumn(name="booking_id")
 	private Booking booking;
 	
 	public int getUserId() {
-		return UserId;
+		return user_id;
 	}
 	public void setUserId(int id) {
-		this.UserId = id;
+		this.user_id = id;
 	}
 	public String getUserName() {
 		return userName;
@@ -84,13 +81,19 @@ public class User
 	public User(int id, String userName, String password, String firstName, String lastName, String email,
 			Contact contact) {
 		super();
-		this.UserId = id;
+		this.user_id = id;
 		this.userName = userName;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.contact = contact;
+	}
+	@Override
+	public String toString() {
+		return "User [UserId=" + user_id + ", userName=" + userName + ", password=" + password + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", email=" + email + ", contact=" + contact + ", passenger="
+				+ passenger + ", booking=" + booking + "]";
 	}
 	
 	

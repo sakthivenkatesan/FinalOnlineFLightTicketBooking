@@ -2,20 +2,15 @@
 package com.capg.springboot.entity;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Table;
-
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 
 @Entity
 @Table(name="booking")
 public class Booking {
 	@Id
+	@GeneratedValue
 	@Column(name = "id", unique = true, nullable = false)
-	private int Id;
+	private int booking_id;
 	@Column(name = "number")
 	private long bookingNumber;
 	@Column(name = "date")
@@ -25,9 +20,17 @@ public class Booking {
 	@Column(name = "cost")
 	private double totalCost;
 	
-	@OneToOne(mappedBy = "booking",fetch = FetchType.LAZY , cascade = CascadeType.ALL)
-    private User user;
+	@OneToOne
+    @JoinColumn(name="flight_id")
+	private Flight flight;
 	
+	
+	@OneToOne(mappedBy = "booking",fetch = FetchType.LAZY , cascade = CascadeType.ALL)
+    private User user; 
+	
+	/*@OneToOne
+    @JoinColumn(name="user_id")
+	private User user;*/
 	
 	public Booking() {
 		super();
@@ -35,17 +38,17 @@ public class Booking {
 	}
 	public Booking(int id, long bookingNumber, int bookingDate, int travelDate, double totalCost) {
 		super();
-		Id = id;
+		booking_id = id;
 		this.bookingNumber = bookingNumber;
 		this.bookingDate = bookingDate;
 		this.travelDate = travelDate;
 		this.totalCost = totalCost;
 	}
 	public int getId() {
-		return Id;
+		return booking_id;
 	}
 	public void setId(int id) {
-		Id = id;
+		booking_id = id;
 	}
 	public long getBookingNumber() {
 		return bookingNumber;
@@ -70,6 +73,11 @@ public class Booking {
 	}
 	public void setTotalCost(double totalCost) {
 		this.totalCost = totalCost;
+	}
+	@Override
+	public String toString() {
+		return "Booking [Id=" + booking_id + ", bookingNumber=" + bookingNumber + ", bookingDate=" + bookingDate
+				+ ", travelDate=" + travelDate + ", totalCost=" + totalCost + ", user=" + user + "]";
 	}
 	
 	

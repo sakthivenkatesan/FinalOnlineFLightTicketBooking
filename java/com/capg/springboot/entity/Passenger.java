@@ -10,9 +10,9 @@ import javax.persistence.*;
 @Table(name="passenger")
 public class Passenger {
 	@Id
+	@GeneratedValue
 	@Column(name = "id", unique = true, nullable = false)
-
-	private int passengerId;
+	private int passenger_id;
 	@Column(name = "fname")
 	private String firstName;
 	@Column(name = "lname")
@@ -29,6 +29,10 @@ public class Passenger {
 	@OneToOne(mappedBy = "passenger",fetch = FetchType.LAZY , cascade = CascadeType.ALL)
     private User user;
 	
+	/*@OneToOne
+    @JoinColumn(name="user_id")
+	private User user;*/
+	
 	public Passenger() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -36,7 +40,7 @@ public class Passenger {
 	public Passenger(int id, String firstName, String lastName, int age, String gender, String passportNo,
 			String mealPref) {
 		super();
-		this.passengerId = id;
+		this.passenger_id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.age = age;
@@ -45,10 +49,10 @@ public class Passenger {
 		this.mealPref = mealPref;
 	}
 	public int getPassengerId() {
-		return passengerId;
+		return passenger_id;
 	}
 	public void setPassengerId(int passengerId) {
-		this.passengerId = passengerId;
+		this.passenger_id = passengerId;
 	}
 	public String getFirstName() {
 		return firstName;
@@ -85,6 +89,12 @@ public class Passenger {
 	}
 	public void setMealPref(String mealPref) {
 		this.mealPref = mealPref;
+	}
+	@Override
+	public String toString() {
+		return "Passenger [passengerId=" + passenger_id + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", age=" + age + ", gender=" + gender + ", passportNo=" + passportNo + ", mealPref=" + mealPref
+				+ ", user=" + user + "]";
 	}
 	
 

@@ -6,8 +6,8 @@ import com.capg.springboot.entity.Booking;
 public interface BookingService
 {
 
-	Booking makePayment(Booking payment);
-
-	Booking cancelBooking(Booking payment);
+	Booking addBooking(Booking add);
+    Booking updateBooking(Booking add);
+	Booking removeBooking(Booking add);
 	
 }

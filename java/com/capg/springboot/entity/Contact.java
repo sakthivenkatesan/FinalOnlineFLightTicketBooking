@@ -4,9 +4,11 @@ import javax.persistence.*;
 @Entity
 @Table(name="contact")
 public class Contact {
+	
 	@Id
+	@GeneratedValue
 	@Column(name = "id", unique = true, nullable = false)
-	private int customerId;
+	private int contact_id;
 	@Column(name = "type")
 	private String type;
 	@Column(name = "address")
@@ -25,16 +27,20 @@ public class Contact {
 	@OneToOne(mappedBy = "contact",fetch = FetchType.LAZY , cascade = CascadeType.ALL)
     private User user;
 	
+	/*@OneToOne
+    @JoinColumn(name="user_id")
+	private User user;*/
+	
 	
 	public Contact() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public int getCustomerId() {
-		return customerId;
+		return contact_id;
 	}
 	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
+		this.contact_id = customerId;
 	}
 	public String getType() {
 		return type;
@@ -79,7 +85,11 @@ public class Contact {
 		this.mobileNo = mobileNo;
 	}
 	
-	
-		
+	@Override
+	public String toString() {
+		return "Contact [customerId=" + contact_id + ", type=" + type + ", addressLine=" + addressLine + ", zipCode="
+				+ zipCode + ", city=" + city + ", state=" + state + ", country=" + country + ", mobileNo=" + mobileNo
+				+ ", user=" + user + "]";
+	}
 
 }

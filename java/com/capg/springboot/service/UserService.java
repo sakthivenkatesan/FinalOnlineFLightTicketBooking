@@ -5,14 +5,11 @@ import com.capg.springboot.entity.User;
 
 public interface UserService 
 {
-	User addUser(User customer);
-
-	User modifyCustomer(User customer);
-
-	User removeCustomer(User customer);
-
-	Object getAllCustomers();
-
-	User deleteUser(Integer customerId);
+	
+	 User addUser(User customer);
+	  
+	  User updateUser(User customer);
+	  
+	  User removeUser(User customer);	 
 	
 }
